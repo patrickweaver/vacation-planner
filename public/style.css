@@ -35,6 +35,10 @@ h1 {
   background-color: #CCFFEE;
 }
 
+.weekend-half {
+  background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #CCFFEE, #CCFFEE, #CCFFEE);
+}
+
 .holiday {
   background-color: #EECCFF;
 }
