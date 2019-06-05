@@ -10,11 +10,11 @@ export default class Day extends React.Component {
   
   render() {
     var classes = 'day'
-    if (this.props.weekDay === 0 || this.props.weekDay === 6) {
-      classes += ' weekend'
-    }
 
     switch(this.props.status) {
+      case 8:
+        classes += ' weekend';
+        break;
       case 1:
         classes += ' summer-friday';
         break;
@@ -35,6 +35,9 @@ export default class Day extends React.Component {
         break;
       case 7:
         classes += ' other-half';
+        break;
+      case 9:
+        classes += ' weekend-half';
         break;
       default:
         classes += '';

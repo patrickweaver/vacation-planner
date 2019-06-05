@@ -28,41 +28,56 @@ export default class Cal extends React.Component {
     this.changeDayStatus = this.changeDayStatus.bind(this);
     this.state = {
       changes: 0,
+      update12: 1,
       scheduledFridays: 0,
       vacation: 0,
       other: 0,
       weekStatuses: [ 
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 3, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 3, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 3, 0, 0, 0]
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 3, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 3, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 0, 0, 0, 0, 0, 8],
+        [8, 3, 0, 0, 0]
       ]
     };
   }
   
   componentDidMount() {
     var localState = JSON.parse(localStorage.getItem('summerFridayState'));
-    this.setState(localState)
+    
+    /* this is to update from version 1.1 */
+    
+    var newState = localState;
+    if (!newState.update12 || newState.update12 === 0) {
+      localState.weekStatuses.map((i, iIndex) => {
+        i.map((j, jIndex) => {
+          if (jIndex === 0 || jIndex === 6) {
+            if (j === 0) {
+              newState.weekStatuses[iIndex][jIndex] = 8
+            }
+          }
+        })
+      })
+    }
+    
+    
+    this.setState(newState)
   }
   
   changeDayStatus(event, weekNumber, dayNumber, type) {
     event.preventDefault()
     const currentStatus = this.state.weekStatuses[weekNumber][dayNumber];
-    if (currentStatus === 3) {
-      return
-    }
     var newStatus;
     if (type === 'left'){
       if (dayNumber === 5) {
@@ -72,6 +87,15 @@ export default class Cal extends React.Component {
           newStatus = 4;
         } else {
           newStatus = 0;
+        }
+      }
+      if (dayNumber === 0 || dayNumber === 6) {
+        if (currentStatus === 8) {
+          newStatus = 0;
+        } else if (currentStatus === 0) {
+          newStatus = 9;
+        } else {
+          newStatus = 8;
         }
       }
       if (dayNumber > 0 && dayNumber < 5) {
