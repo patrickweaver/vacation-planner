@@ -1,0 +1,37 @@
+{
+  "name": "sumfrical",
+  "version": "1.1.0",
+  "description": "Plan your summer Fridays and vacation days this summer",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack && node server.js"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.0.5",
+    "express": "^4.16.4",
+    "jsx-loader": "^0.13.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1",
+    "webpack": "4.29.2",
+    "webpack-cli": "3.2.2",
+    "@babel/core": "^7.2.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/sumfrical"
+  },
+  "license": "MIT"
+}
