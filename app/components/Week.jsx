@@ -8,7 +8,8 @@ export default function Week(props){
         return(
           <Day
             key={index}
-            date={day}
+            date={day.label}
+            specialDateProperties={day.specialDateProperties}
             weekNumber={props.weekNumber}
             weekDay={index}
             status={props.statuses[index]}

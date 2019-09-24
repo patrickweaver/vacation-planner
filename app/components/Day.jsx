@@ -1,4 +1,5 @@
 import React from 'react'
+import statuses from '../helpers/statuses'
 
 export default class Day extends React.Component {
   constructor(props) {
@@ -12,32 +13,44 @@ export default class Day extends React.Component {
     var classes = 'day'
 
     switch(this.props.status) {
-      case 8:
+      case statuses.weekend:
         classes += ' weekend';
         break;
-      case 1:
-        classes += ' summer-friday';
+      case statuses.weekendHalf:
+        classes += ' weekend-half';
         break;
-      case 4:
-        classes += ' half-summer-friday';
-        break;
-      case 2:
-        classes += ' vacation';
-        break;
-      case 5:
-        classes += ' half-vacation';
-        break;
-      case 3:
+      case statuses.holiday:
         classes += ' holiday';
         break;
-      case 6:
+      case statuses.holidayHalf:
+        classes += ' holiday-half';
+        break;
+      case statuses.halfVacation:
+        classes += ' holiday-half';
+        break;
+      case statuses.vacation:
+        classes += ' vacation';
+        break;
+      case statuses.vacationHalf:
+        classes += ' vacation-half';
+        break;
+      case statuses.rolloverVacation:
+        classes += ' rollover-vacation';
+        break;
+      case statuses.rolloverVacationHalf:
+        classes += ' rollover-vacation-half';
+        break;
+      case statuses.summerFriday:
+        classes += ' summer-friday';
+        break;
+      case statuses.summerFridayHalf:
+        classes += ' summer-friday-half';
+        break;
+      case statuses.other:
         classes += ' other';
         break;
-      case 7:
+      case statuses.otherHalf:
         classes += ' other-half';
-        break;
-      case 9:
-        classes += ' weekend-half';
         break;
       default:
         classes += '';
@@ -47,7 +60,7 @@ export default class Day extends React.Component {
       <li
         className={classes}
         dangerouslySetInnerHTML={{__html: this.props.date}}
-        onClick={e => this.props.changeDayStatus(e, this.props.weekNumber, this.props.weekDay, 'left')}
+        onClick={e => this.props.changeDayStatus(e, this.props.weekNumber, this.props.weekDay, this.props.specialDateProperties, 'left')}
         onContextMenu={e => this.props.changeDayStatus(e, this.props.weekNumber, this.props.weekDay, 'right')}
       ></li>
     )

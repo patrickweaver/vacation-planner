@@ -1,0 +1,20 @@
+- Employee Birthday State
+- Comp Day State
+- Personal Day State
+
+- For each in Day class assignments
+
+- Move Key/Legend to it's own component
+
+- Counters
+- Only first x vacation days are shown as rollover
+- Only first x summer Fridays are shown as summer Friday
+  - Mix between Summer Friday and vacation day state
+  
+- Input number of vacation days
+- Input number of rollover days
+- Input number of summer fridays
+
+- Move Key to the right if room, keep fixed.
+
+- Don't highlight text on double click
