@@ -64,6 +64,7 @@ h1#app-title {
   justify-content: space-between;
   width: 170px;
   height: 30px;
+  margin: 3px 0;
 }
 
 #key > li > label, #key > li > div {
@@ -159,10 +160,19 @@ h1#app-title {
   font-size: 16px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   
-  #tally {
+  body {
+    margin-bottom: 40px;
+  }
+  
+  #tally, #key-container {
     margin: 5px 20px;
+  }
+  
+  #key-container {
+    top: 10px;
+    position: relative;
   }
   
   #day-labels {
@@ -218,6 +228,7 @@ h1#app-title {
   #key > li {
     width: 120px;
     flex-direction: row;
+    margin: 0;
   }
 }
 
