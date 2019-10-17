@@ -1,3 +1,10 @@
+/*
+
+Generates the calendar html
+
+*/
+
+
 import moment from 'moment'
 import getDateObject from './getDateObject'
 import dayStatus from './dayStatus'

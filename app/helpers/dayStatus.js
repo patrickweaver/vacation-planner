@@ -1,3 +1,10 @@
+/*
+
+Determines the default status for a day
+
+*/
+
+
 import holidays from './holidays'
 import statuses from './statuses'
 import getDateObject from './getDateObject'

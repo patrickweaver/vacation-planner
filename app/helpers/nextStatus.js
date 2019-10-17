@@ -1,3 +1,10 @@
+/* 
+
+Determines the status that will come next when a day is clicked on
+
+*/
+
+
 import moment from 'moment'
 import statuses from './statuses'
 import importantNumbers from './importantNumbers'
@@ -125,12 +132,23 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
     }
   } else { // Right Click
     
-    if (currentStatus === statuses.other) {
-      newStatus = statuses.normal;
-    } else if (currentStatus === statuses.otherHalf) {
-      newStatus = statuses.other;
+    // Don't do anything for right clicks on weekend or holidays:
+    if (
+      dayNumber === 0
+      || dayNumber === 6
+      || specialDateProperties.indexOf('holiday') >= 0
+    
+    ) {
+      newStatus = currentStatus
     } else {
-      newStatus = statuses.otherHalf;
+    // Otherwise schedule an 'other' day
+      if (currentStatus === statuses.other) {
+        newStatus = statuses.normal;
+      } else if (currentStatus === statuses.otherHalf) {
+        newStatus = statuses.other;
+      } else {
+        newStatus = statuses.otherHalf;
+      }
     }
 
   }

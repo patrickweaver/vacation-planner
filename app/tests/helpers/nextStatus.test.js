@@ -92,4 +92,24 @@ test('After rollover half in rollover period should be next year vacation half r
   expect(nextStatus(statuses.rolloverVacationHalf, 1, 3, ['rollover'], 'left', 1, 5)).toBe(statuses.nextYearVacationHalfRolloverVacationHalf)
 })
 
+test('Right clicking on weekend full should do nothing', () => {
+  expect(nextStatus(statuses.weekend, 1, 6, ['rollover'], 'right', 0, 0)).toBe(statuses.weekend)
+})
+
+test('Right clicking on weekend half should do nothing', () => {
+  expect(nextStatus(statuses.weekendHalf, 1, 6, ['rollover'], 'right', 0, 0)).toBe(statuses.weekendHalf)
+})
+
+test('Right clicking on normal day on a Saturday (weekend) should do nothing', () => {
+  expect(nextStatus(statuses.normal, 1, 6, ['rollover'], 'right', 0, 0)).toBe(statuses.normal)
+})
+
+test('Right clicking on a holiday should do nothing', () => {
+  expect(nextStatus(statuses.holiday, 1, 3, ['holiday'], 'right', 0, 0)).toBe(statuses.holiday)
+})
+
+test('Right clicking on a holiday half should do nothing', () => {
+  expect(nextStatus(statuses.holidayHalf, 1, 3, ['holiday'], 'right', 0, 0)).toBe(statuses.holidayHalf)
+})
+
 

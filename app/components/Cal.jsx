@@ -91,14 +91,14 @@ export default class Cal extends React.Component {
             other += .5;
             break;
           case statuses.nextYearVacationHalfRolloverVacationHalf:
-            vacation += .5;
+            nextYearVacation += .5;
             rolloverVacation += .5;
             break;
-          case statuses.nextYearvacation:
-            
+          case statuses.nextYearVacation:
+            nextYearVacation += 1;
             break;
-          case statuses.nextYearVacatioNHalf:
-            
+          case statuses.nextYearVacationHalf:
+            nextYearVacation += .5;
             break;
           }
         })
@@ -147,20 +147,20 @@ export default class Cal extends React.Component {
 
         <ul id="tally">
           <li>
-            <strong>2019 Vacation Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
+            <strong>2019 Vac. Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
           </li>
           <hr/>
           <li>
-            2019 Vacation Days Scheduled (including Rollover): {this.state.vacation + this.state.rolloverVacation}
+            2019 Vac. Days Scheduled (including Rollover): {this.state.vacation + this.state.rolloverVacation}
           </li>
           <li>
-            2019 Vacation Days Remaining: {this.vacationDaysRemaining()}
+            2019 Vac. Days Remaining: {this.vacationDaysRemaining()}
           </li>
           <li>
-            Rollover Vacation Days Scheduled: {this.state.rolloverVacation}
+            Rollover Vac. Days Scheduled: {this.state.rolloverVacation}
           </li>
           <li>
-            2020 Vacation Days Scheduled: {this.state.nextYearVacation}
+            2020 Vac. Days Scheduled: {this.state.nextYearVacation}
           </li>
           <li>
             Misc Days Off: {this.state.other} (Right Click)
@@ -182,20 +182,34 @@ export default class Cal extends React.Component {
         <div id="key-container">
           <h3>Key:</h3>
           <ul id="key">
-            <li>Weekend:</li>
-            <li className="day weekend">Jan&nbsp;&nbsp;1</li>
-            <li>Holiday:</li>
-            <li className="day holiday">Jan&nbsp;&nbsp;1</li>
-            <li>Vacation:</li>
-            <li className="day vacation">Jan&nbsp;&nbsp;1</li>
-            <li>Rollover Vacation:</li>
-            <li className="day rollover-vacation">Jan&nbsp;&nbsp;1</li>
-            <li>Next Year Vacation:</li>
-            <li className="day next-year-vacation">Jan&nbsp;&nbsp;1</li>
-            <li>Summer Friday:</li>
-            <li className="day summer-friday">Jan&nbsp;&nbsp;1</li>
-            <li>Other:</li>
-            <li className="day other">Jan&nbsp;&nbsp;1</li>
+            <li>
+              <label>Weekend:</label>
+              <div className="day weekend">Jan&nbsp;&nbsp;1</div>
+            </li>
+            <li>
+              <label>Holiday:</label>
+              <div className="day holiday">Jan&nbsp;&nbsp;1</div>
+            </li>
+            <li>
+              <label>Vacation:</label>
+              <div className="day vacation">Jan&nbsp;&nbsp;1</div>
+            </li>
+            <li>
+              <label>Rollover Vacation:</label>
+              <div className="day rollover-vacation">Jan&nbsp;&nbsp;1</div>
+            </li>
+            <li>
+              <label>Next Year Vacation:</label>
+              <div className="day next-year-vacation">Jan&nbsp;&nbsp;1</div>
+            </li>
+            <li>
+              <label>Summer Friday:</label>
+              <div className="day summer-friday">Jan&nbsp;&nbsp;1</div>
+            </li>
+            <li>
+              <label>Other:</label>
+              <div className="day other">Jan&nbsp;&nbsp;1</div>
+            </li>
           </ul>
         </div>
       </div>

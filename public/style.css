@@ -3,25 +3,38 @@ body {
   margin: 5px;
 }
 
-h1 {
+h1#app-title {
   padding: 0;
   margin: 5px 0;
+  color: #BBF;
+  position: fixed;
+  top: 0;
+}
+
+#tally, #key-container {
+  position: fixed;
+  margin: 5px 20px 5px 450px;
+  padding: 7px 15px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: white;
+  width: 382px;
 }
 
 #tally {
-  position: fixed;
-  background-color: white;
-  margin: 5px 20px;
-  padding: 20px 40px;
-  border: 1px solid #333;
-  border-radius: 5px;
+  top: 58px;
 }
 
-#key-container {
+#tally input {
+  display: inline-block;
+}
+
+#tally li {
+  list-style: none;
 }
 
 #day-labels {
-  margin-top: 260px;
+  margin-top: 60px;
 }
 
 .week {
@@ -31,10 +44,38 @@ h1 {
   margin: 2px 0;
 }
 
-#key > li {
-  font-family: monospace;
+#key-container {
+  top: 220px;
 }
 
+#key {
+  padding: 0;
+  width: 370px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+}
+
+#key > li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 170px;
+  height: 30px;
+  margin: 3px 0;
+}
+
+#key > li > label, #key > li > div {
+  font-family: monospace;
+  margin: 0 5px;
+}
+
+#key > li > label {
+  max-width: 100px;
+  margin: 0;
+}
 
 .day, .label {
   display: inline-block;
@@ -42,6 +83,7 @@ h1 {
   padding: 3px;
   border: 1px solid #444;
   border-radius: 5px;
+  height: 18px;
 }
 
 .day {
@@ -118,16 +160,98 @@ h1 {
   font-size: 16px;
 }
 
+
+/*
+
+Narrower than 900 px tally moves to above calendar
+and key moves below calendar. Tally stays fixed, key sits at bottom
+
+*/
+
+@media (max-width: 900px) {
+  
+  body {
+    margin-bottom: 40px;
+  }
+  
+  #tally, #key-container {
+    margin: 5px 20px;
+  }
+  
+  #key-container {
+    top: 10px;
+    position: relative;
+  }
+  
+  #day-labels {
+    margin-top: 220px;
+  }
+}
+
 @media (max-width: 480px) {
   body {
-    font-size: 75%;
+    font-size: 80%;
+    margin-bottom: 50px;
+  }
+  
+  h1 {
+    font-size: 170%;
+    text-align: center;
+  }
+  
+  #tally, #key-container {
+    width: Calc(100% - 40px);
+  }
+  
+  #tally {
+    top: 40px;
+    margin: 0;
+  }
+  
+  #day-labels {
+    margin-top: 180px;
+  }
+  
+  .day, .label {
+    margin: 3px;
+    padding: 3px;
+    height: 17px;
+  }
+  
+  #key-container {
+    position: relative;
+    top: 10px;
+    margin: 0;
+    padding: 5px;
+  }
+  
+  #key-container h3 {
+    margin: 5px 0;
+  }
+  
+  #key {
+    width: 100%;
+  }
+  
+  #key > li {
+    width: 120px;
+    flex-direction: row;
+    margin: 0;
   }
 }
 
 @media (max-width: 350px) {
+  body {
+    margin: 5px;
+    font-size: 75%;
+  }
+  
+  #day-labels {
+    margin-top: 180px;
+  }
   .day, .label {
-    padding: 1px;
     margin: 2px;
+    padding: 1px;
   }
 }
 
