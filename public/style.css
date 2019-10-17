@@ -160,6 +160,14 @@ h1#app-title {
   font-size: 16px;
 }
 
+
+/*
+
+Narrower than 900 px tally moves to above calendar
+and key moves below calendar. Tally stays fixed, key sits at bottom
+
+*/
+
 @media (max-width: 900px) {
   
   body {

@@ -1,3 +1,10 @@
+/* 
+
+Determines the status that will come next when a day is clicked on
+
+*/
+
+
 import moment from 'moment'
 import statuses from './statuses'
 import importantNumbers from './importantNumbers'

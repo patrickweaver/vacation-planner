@@ -1,3 +1,10 @@
+/* 
+
+Generates the date object type needed for other calculations
+
+*/
+
+
 export default (momentDate) => {
   const dateObject = {
     momentDate: momentDate,
