@@ -18,7 +18,10 @@ h1 {
 }
 
 #key-container {
-  margin-top: 160px;
+}
+
+#day-labels {
+  margin-top: 260px;
 }
 
 .week {
@@ -43,6 +46,7 @@ h1 {
 
 .day {
   cursor: pointer;
+  user-select: none;
 }
 
 .label {
@@ -66,19 +70,19 @@ h1 {
 }
 
 .vacation {
-  background-color: #FF88CC;
+  background-color: #FF4FCF;
 }
 
 .vacation-half {
-  background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FF88CC, #FF88CC, #FF88CC);
+  background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FF4FCF, #FF4FCF, #FF4FCF);
 }
 
 .rollover-vacation {
-  background-color: #FFBBDD;
+  background-color: #FF87A7;
 }
 
 .rollover-vacation-half {
-  background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FFBBDD, #FFBBDD, #FFBBDD);
+  background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FF87A7, #FF87A7, #FF87A7);
 }
 
 .summer-friday {
@@ -95,5 +99,35 @@ h1 {
 
 .other-half {
   background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #DF9FFF, #DF9FFF, #DF9FFF);
+}
+
+.next-year-vacation-half-rollover-half {
+  background-image: linear-gradient(to bottom, #FFBF7F, #FFBF7F, #FFBF7F, #FF87A7, #FF87A7, #FF87A7);
+}
+
+.next-year-vacation {
+  background-color: #FFBF7F;
+}
+
+.next-year-vacation-half {
+  background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FFBF7F, #FFBF7F, #FFBF7F);
+}
+
+.days-input {
+  width: 70px;
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 75%;
+  }
+}
+
+@media (max-width: 350px) {
+  .day, .label {
+    padding: 1px;
+    margin: 2px;
+  }
 }
 

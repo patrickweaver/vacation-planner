@@ -25,10 +25,10 @@ test("January 2 is not a holiday", () => {
 })
 
 // Rollover Vacation
-test("Wednesday January 2 is an eligible rollover vacation day", () => {
-  const day = moment('2019-01-02')
+test("Thursday January 2, 2020 is an eligible rollover vacation day", () => {
+  const day = moment('2020-01-02')
   const dateObject = getDateObject(day)
-  expect(dayStatus(dateObject).specialDateProperties.indexOf('rollover')).toBeGreaterThanOrEqual(0);
+  expect(dayStatus(dateObject, true).specialDateProperties.indexOf('rollover')).toBeGreaterThanOrEqual(0);
 })
 
 test("Monday April 1 is not an eligible rollover vacation day", () => {

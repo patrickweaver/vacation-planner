@@ -1,7 +1,8 @@
 import moment from 'moment'
 import statuses from './statuses'
+import importantNumbers from './importantNumbers'
 
-export default (currentStatus, weekNumber, dayNumber, specialDateProperties, clickType) => {
+export default (currentStatus, weekNumber, dayNumber, specialDateProperties, clickType, vacationDaysRemaining, rolloverVacationUsed) => {
   
   var newStatus
   if (clickType === 'left'){
@@ -40,6 +41,8 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
         case statuses.rolloverVacation:
         case statuses.summerFriday:
         case statuses.other:
+        case statuses.nextYearVacationHalfRolloverVacationHalf:
+        case statuses.nextYearVacation:
           newStatus = statuses.normal;
           break;
         
@@ -55,9 +58,25 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
           }
           
           // Check if in rollover vacation period:
+          // Then check if vacation days remain to use as rollover
           else if (specialDateProperties.indexOf('rollover') >= 0) {
-            newStatus = statuses.rolloverVacationHalf;
-          }
+            
+            // if current year vacation days remain
+            if (
+              vacationDaysRemaining > 0
+              && rolloverVacationUsed < importantNumbers.rolloverVacationLimit
+            ) {
+              newStatus = statuses.rolloverVacationHalf;
+            } else if (
+              vacationDaysRemaining > 0
+              && rolloverVacationUsed < importantNumbers.rolloverVacationLimit - 0.5
+            ){ // If .5 from rollover limit can use half and half day
+              newStatus = statuses.nextYearVacationHalfRolloverVacationHalf;
+            } else { // Otherwise use next year days
+              newStatus = statuses.nextYearVacationHalf;
+              
+            }
+          }       
           
           // Check if in Summer Friday Period and on a Friday:
           else if (specialDateProperties.indexOf('summerFriday') >= 0) {
@@ -65,8 +84,13 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
           }
           
           // Any other day can be vacation:
-          else {
+          // If there are vacation days remaining
+          else if (vacationDaysRemaining > 0) {
             newStatus = statuses.vacationHalf;
+          } else {
+            // If no other condition applies leave as normal:
+            newStatus = statuses.normal;
+            alert('No vacation days remaining')
           }
           
           break;
@@ -78,7 +102,19 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
           newStatus = statuses.vacation;
           break;
         case statuses.rolloverVacationHalf:
-          newStatus = statuses.rolloverVacation;
+          // If no vacation days remain or too many rollovers used do half and half:
+          if (
+            vacationDaysRemaining > 0
+            && rolloverVacationUsed < importantNumbers.rolloverVacationLimit
+          ) {
+            newStatus = statuses.rolloverVacation;
+          } else {
+            newStatus = statuses.nextYearVacationHalfRolloverVacationHalf;
+          }
+          
+          break;
+        case statuses.nextYearVacationHalf:
+            newStatus = statuses.nextYearVacation;
           break;
         case statuses.summerFridayHalf:
           newStatus = statuses.summerFriday;

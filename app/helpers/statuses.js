@@ -11,5 +11,8 @@ export default {
   summerFriday: 9,
   summerFridayHalf: 10,
   other: 11,
-  otherHalf: 12
+  otherHalf: 12,
+  nextYearVacationHalfRolloverVacationHalf: 13,
+  nextYearVacation: 14,
+  nextYearVacationHalf: 15
 }

@@ -34,16 +34,6 @@ export default function calendar(startDate, endDate) {
       dateObject.label = dateObject.month + '&nbsp;' + dateObject.day
     }
     
-    
-    // **** DEBUGGING VISUALLY
-    /*
-    if (dateObject.note.length > 0) {
-      dateObject.label += '&nbsp;' + dateObject.note.substring(0, 5)
-    } else {
-      dateObject.label += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-    }
-    */
-    
     week.push(dateObject)
 
     if (week.length === 7) {

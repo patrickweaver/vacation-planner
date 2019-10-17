@@ -1,13 +1,14 @@
 const cookieName = 'winterCalState'
 
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 import Week from './Week'
 
 import calendar from '../helpers/calendar'
 import nextStatus from '../helpers/nextStatus'
 import importantDates from '../helpers/importantDates'
+import importantNumbers from '../helpers/importantNumbers'
+import statuses from '../helpers/statuses'
 
 
 const weekArrays = calendar(importantDates.startDate, importantDates.endDate)
@@ -17,10 +18,14 @@ export default class Cal extends React.Component {
   constructor(props) {
     super(props);
     this.changeDayStatus = this.changeDayStatus.bind(this);
+    this.vacationDaysRemaining = this.vacationDaysRemaining.bind(this);
+    this.saveVacation = this.saveVacation.bind(this);
     this.state = {
       changes: 0,
+      vacationLeft: importantNumbers.defaultVacationDays,
       vacation: 0,
       rolloverVacation: 0,
+      nextYearVacation: 0,
       summerFriday: 0,
       other: 0,
       weekStatuses: weekArrays.map(week => {
@@ -30,36 +35,32 @@ export default class Cal extends React.Component {
   }
   
   componentDidMount() {
-    /*
+
     var localState = JSON.parse(localStorage.getItem(cookieName));
     
     // this is to update from version 1.1
     if (localState){
       var newState = localState;
-      localState.weekStatuses.map((i, iIndex) => {
-        i.map((j, jIndex) => {
-          if (jIndex === 0 || jIndex === 6) {
-            if (j === 0) {
-              newState.weekStatuses[iIndex][jIndex] = 8
-            }
-          }
-        })
-      })
       this.setState(newState)
     }
-    */
+
+  }
+  
+  vacationDaysRemaining() {
+    return this.state.vacationLeft - (this.state.vacation + this.state.rolloverVacation)
   }
   
   changeDayStatus(event, weekNumber, dayNumber, specialDateProperties, clickType) {
     event.preventDefault()
     const currentStatus = this.state.weekStatuses[weekNumber][dayNumber];
-    var newStatus = nextStatus(currentStatus, weekNumber, dayNumber, specialDateProperties, clickType);
+    var newStatus = nextStatus(currentStatus, weekNumber, dayNumber, specialDateProperties, clickType, this.vacationDaysRemaining(), this.state.rolloverVacation);
     
     this.setState((prevState, props) => {
       var newStatuses = prevState.weekStatuses
       newStatuses[weekNumber][dayNumber] = newStatus
       
       var vacation = 0;
+      var nextYearVacation = 0;
       var rolloverVacation = 0;
       var summerFriday = 0;
       var other = 0;
@@ -67,27 +68,37 @@ export default class Cal extends React.Component {
       newStatuses.map(i => {
         i.map(j => {
           switch(j) {
-          case 5:
+          case statuses.vacation:
             vacation += 1;
             break;
-          case 6:
+          case statuses.vacationHalf:
             vacation += .5;
             break;
-          case 7:
+          case statuses.rolloverVacation:
             rolloverVacation += 1;
             break;
-          case 8:
+          case statuses.rolloverVacationHalf:
             rolloverVacation += .5;
             break;
-          case 9:
+          case statuses.summerFriday:
             summerFriday += 1;
-          case 10:
+          case statuses.summerFridayHalf:
             summerFriday += .5;    
-          case 11:
+          case statuses.other:
             other += 1;
             break;
-          case 12:
+          case statuses.otherHalf:
             other += .5;
+            break;
+          case statuses.nextYearVacationHalfRolloverVacationHalf:
+            vacation += .5;
+            rolloverVacation += .5;
+            break;
+          case statuses.nextYearvacation:
+            
+            break;
+          case statuses.nextYearVacatioNHalf:
+            
             break;
           }
         })
@@ -97,11 +108,16 @@ export default class Cal extends React.Component {
         changes: 1,
         vacation: vacation,
         rolloverVacation: rolloverVacation,
+        nextYearVacation: nextYearVacation,
         summerFriday: summerFriday,
         other: other,
         weekStatuses: newStatuses
       }
     }, this.saveToLocal);
+  }
+  
+  saveVacation(event) {
+    this.setState({vacationLeft: event.target.value});
   }
   
   saveToLocal() {
@@ -127,26 +143,42 @@ export default class Cal extends React.Component {
 
     return (
       <div>
-        <h1 id="app-title">Vacation Planner</h1>
+        <h1 id="app-title">❄️ Winter Vacation Planner ❄️</h1>
 
         <ul id="tally">
           <li>
-            Rollover Vacation Days Used: {this.state.rolloverVacation}
+            <strong>2019 Vacation Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
+          </li>
+          <hr/>
+          <li>
+            2019 Vacation Days Scheduled (including Rollover): {this.state.vacation + this.state.rolloverVacation}
           </li>
           <li>
-            Vacation Days Used: {this.state.vacation}
+            2019 Vacation Days Remaining: {this.vacationDaysRemaining()}
           </li>
           <li>
-            Unscheduled Summer Fridays: {7.5 - this.state.summerFriday}
+            Rollover Vacation Days Scheduled: {this.state.rolloverVacation}
           </li>
           <li>
-            Scheduled Summer Fridays: {this.state.summerFriday}
+            2020 Vacation Days Scheduled: {this.state.nextYearVacation}
           </li>
           <li>
             Misc Days Off: {this.state.other} (Right Click)
           </li>
         </ul>
-        
+                                   
+        <ul id="day-labels" className="week">
+          <li className="label">Sunday</li>
+          <li className="label">Monday</li>
+          <li className="label">&nbsp;Tues&nbsp;</li>
+          <li className="label">&nbsp;Weds&nbsp;</li>
+          <li className="label">&nbsp;Thur&nbsp;</li>
+          <li className="label">Friday</li>
+          <li className="label">&nbsp;Satr&nbsp;</li>
+        </ul>
+        {weeks}
+                                   
+                                   
         <div id="key-container">
           <h3>Key:</h3>
           <ul id="key">
@@ -158,23 +190,14 @@ export default class Cal extends React.Component {
             <li className="day vacation">Jan&nbsp;&nbsp;1</li>
             <li>Rollover Vacation:</li>
             <li className="day rollover-vacation">Jan&nbsp;&nbsp;1</li>
+            <li>Next Year Vacation:</li>
+            <li className="day next-year-vacation">Jan&nbsp;&nbsp;1</li>
             <li>Summer Friday:</li>
             <li className="day summer-friday">Jan&nbsp;&nbsp;1</li>
             <li>Other:</li>
             <li className="day other">Jan&nbsp;&nbsp;1</li>
           </ul>
         </div>
-                                   
-        <ul className="week">
-          <li className="label">Sunday</li>
-          <li className="label">Monday</li>
-          <li className="label">&nbsp;Tues&nbsp;</li>
-          <li className="label">&nbsp;Weds&nbsp;</li>
-          <li className="label">&nbsp;Thur&nbsp;</li>
-          <li className="label">Friday</li>
-          <li className="label">&nbsp;Satr&nbsp;</li>
-        </ul>
-        {weeks}
       </div>
     )
   }
