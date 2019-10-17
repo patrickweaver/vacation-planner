@@ -147,20 +147,20 @@ export default class Cal extends React.Component {
 
         <ul id="tally">
           <li>
-            <strong>2019 Vacation Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
+            <strong>2019 Vac. Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
           </li>
           <hr/>
           <li>
-            2019 Vacation Days Scheduled (including Rollover): {this.state.vacation + this.state.rolloverVacation}
+            2019 Vac. Days Scheduled (including Rollover): {this.state.vacation + this.state.rolloverVacation}
           </li>
           <li>
-            2019 Vacation Days Remaining: {this.vacationDaysRemaining()}
+            2019 Vac. Days Remaining: {this.vacationDaysRemaining()}
           </li>
           <li>
-            Rollover Vacation Days Scheduled: {this.state.rolloverVacation}
+            Rollover Vac. Days Scheduled: {this.state.rolloverVacation}
           </li>
           <li>
-            2020 Vacation Days Scheduled: {this.state.nextYearVacation}
+            2020 Vac. Days Scheduled: {this.state.nextYearVacation}
           </li>
           <li>
             Misc Days Off: {this.state.other} (Right Click)
