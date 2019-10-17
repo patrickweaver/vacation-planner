@@ -1,0 +1,18 @@
+name,emoji,month,day,weekDayOfMonth,weekDay,offset
+New Year's Day,🗓,January,1,,,
+Martin Luther King Jr. Day,,January,,3,Mon,
+Presidents Day,🏛,February,,3,Mon,
+Memorial Day,,May,,-1,Mon,
+Independence Day,🎇,July,4,,,
+Labor Day,,September,,1,Mon,
+Election Day,,November,,1,Mon,1
+Thanksgiving Day,,November,,4,Thu,
+Day After Thanksgiving,,November,,4,Thu,1
+Christmas Eve,,December,24,,,
+Christmas,,December ,25,,,
+Winter Break,,December,26,,,
+Winter Break,,December,27,,,
+Winter Break,,December,28,,,
+Winter Break,,December,29,,,
+Winter Break,,December,30,,,
+Winter Break,,December,31,,,

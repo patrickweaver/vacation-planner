@@ -1,0 +1,5 @@
+- Recheck:
+  - When vacation switches from 0 to .5, should check if there are any nextYearVacationHalfRolloverVacationHalf days and switch them to vacationRollover
+  - When rollover is maxed out, if rollover is removed turn nextYear days into rollover
+
+- Better alert in nextStatus when no vacation days remain.
