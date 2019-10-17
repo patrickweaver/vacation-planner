@@ -1,6 +1,8 @@
 # Winter Vacation Planner
 
-A react app that helps plan vacation.
+A React app that helps plan vacation.
+
+Tests using Jest, mostly unit tests on date related modules.
 
 ## Setup:
 
