@@ -10,3 +10,4 @@ Tests using Jest, mostly unit tests on date related modules.
 2. Set Calendar start and end dates, and special periods in `/app/helpers/importantDates.js`.
 3. Set default number of days, and days carried over into next yaer in `/app/helpers/importantNumbers.js`
 4. Set cookieName in `/app/components/Cal.jsx` if changing date range.
+5. Either run `npm build` manually, or add it to the `start` command in `/package.json`. This is turned off to make the app load faster.
