@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "rm -f app/helpers/holidays.js && node holidaysBuilder.js && webpack",
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "test": "jest"
   },
   "dependencies": {
