@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
-  margin: 5px;
+  margin: 0 auto;
+  max-width: 884px;
 }
 
 h1#app-title {
@@ -172,6 +173,7 @@ and key moves below calendar. Tally stays fixed, key sits at bottom
   
   body {
     margin-bottom: 40px;
+    max-width: 447px;
   }
   
   #tally, #key-container {

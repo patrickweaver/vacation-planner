@@ -8,7 +8,7 @@ dependencies:
   jest: 25.0.0
   jsx-loader: 0.13.2
   moment: 2.24.0
-  react: 16.9.0
+  react: 16.11.0
   react-dom: 16.10.2
   webpack: 4.39.3
   webpack-cli: 3.3.8
@@ -5084,7 +5084,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
-  /react/16.9.0:
+  /react/16.11.0:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
@@ -5093,7 +5093,7 @@ packages:
     engines:
       node: '>=0.10.0'
     resolution:
-      integrity: sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
+      integrity: sha512-M5Y8yITaLmU0ynd0r1Yvfq98Rmll6q8AxaEe88c8e7LxO8fZ2cNgmFt0aGAS9wzf1Ao32NKXtCl+/tVVtkxq6g==
   /read-pkg-up/4.0.0:
     dependencies:
       find-up: 3.0.0
@@ -6463,7 +6463,7 @@ specifiers:
   jest: ^25.0.0
   jsx-loader: ^0.13.2
   moment: ^2.24.0
-  react: ^16.9.0
+  react: ^16.11.0
   react-dom: ^16.10.2
   webpack: ^4.35.0
   webpack-cli: ^3.3.5

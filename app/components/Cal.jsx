@@ -207,7 +207,7 @@ export default class Cal extends React.Component {
               <div className="day summer-friday">Jan&nbsp;&nbsp;1</div>
             </li>
             <li>
-              <label>Other (Right Click):</label>
+              <label>Other:</label>
               <div className="day other">Jan&nbsp;&nbsp;1</div>
             </li>
           </ul>
