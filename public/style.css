@@ -8,7 +8,6 @@ h1#app-title {
   padding: 0;
   margin: 5px 0;
   color: #BBF;
-  position: fixed;
   top: 0;
 }
 
@@ -35,7 +34,7 @@ h1#app-title {
 }
 
 #day-labels {
-  margin-top: 60px;
+  margin-top: 10px;
 }
 
 .week {
@@ -105,7 +104,7 @@ h1#app-title {
 }
 
 .holiday {
-  background-color: #BFEFFF;
+  background-color: #B8E8FF;
 }
 
 .holiday-half {
@@ -156,6 +155,10 @@ h1#app-title {
   background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FFBF7F, #FFBF7F, #FFBF7F);
 }
 
+.summer-friday-half-vacation-half {
+  background-image: linear-gradient(to bottom, #FFFFAF, #FFFFAF, #FFFFAF, #FF4FCF, #FF4FCF, #FF4FCF);
+}
+
 .days-input {
   width: 70px;
   font-size: 16px;
@@ -174,6 +177,14 @@ and key moves below calendar. Tally stays fixed, key sits at bottom
   body {
     margin-bottom: 40px;
     max-width: 447px;
+  }
+  
+  h1#app-title {
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    left: 0;
   }
   
   #tally, #key-container {

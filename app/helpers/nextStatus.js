@@ -9,7 +9,7 @@ import moment from 'moment'
 import statuses from './statuses'
 import importantNumbers from './importantNumbers'
 
-export default (currentStatus, weekNumber, dayNumber, specialDateProperties, clickType, vacationDaysRemaining, rolloverVacationUsed) => {
+export default (currentStatus, weekNumber, dayNumber, specialDateProperties, clickType, vacationDaysRemaining, rolloverVacationUsed, summerFridayDaysRemaining) => {
   
   var newStatus
   if (clickType === 'left'){
@@ -48,8 +48,10 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
         case statuses.rolloverVacation:
         case statuses.summerFriday:
         case statuses.other:
+        case statuses.otherHalf:
         case statuses.nextYearVacationHalfRolloverVacationHalf:
         case statuses.nextYearVacation:
+        case statuses.summerFridayHalfVacationHalf:
           newStatus = statuses.normal;
           break;
         
@@ -87,7 +89,11 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
           
           // Check if in Summer Friday Period and on a Friday:
           else if (specialDateProperties.indexOf('summerFriday') >= 0) {
-            newStatus = statuses.summerFridayHalf;
+            if (summerFridayDaysRemaining > 0) {
+              newStatus = statuses.summerFridayHalf;
+            } else {
+              newStatus = statuses.vacationHalf;
+            }
           }
           
           // Any other day can be vacation:
@@ -124,8 +130,16 @@ export default (currentStatus, weekNumber, dayNumber, specialDateProperties, cli
             newStatus = statuses.nextYearVacation;
           break;
         case statuses.summerFridayHalf:
-          newStatus = statuses.summerFriday;
+          if (summerFridayDaysRemaining > 0) {
+            newStatus = statuses.summerFriday;
+          } else if (summerFridayDaysRemaining === 0) {
+            newStatus = statuses.summerFridayHalfVacationHalf;
+          } else {
+            newStatus = statuses.vacation;
+          }
           break;
+        default:
+          newStatus = statuses.normal;
       }
     
     

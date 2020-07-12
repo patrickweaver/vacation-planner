@@ -3,3 +3,5 @@
   - When rollover is maxed out, if rollover is removed turn nextYear days into rollover
 
 - Better alert in nextStatus when no vacation days remain.
+
+- Adding holiday halfs when nextStatus is confused for some reason

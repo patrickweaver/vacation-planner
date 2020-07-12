@@ -61,6 +61,8 @@ export default class Day extends React.Component {
       case statuses.nextYearVacationHalf:
         classes += ' next-year-vacation-half';
         break;
+      case statuses.summerFridayHalfVacationHalf:
+        classes += ' summer-friday-half-vacation-half';
       default:
         classes += '';
     }
