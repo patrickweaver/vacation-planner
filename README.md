@@ -1,4 +1,4 @@
-# Winter Vacation Planner
+# Vacation Planner
 
 A React app that helps plan vacation.
 

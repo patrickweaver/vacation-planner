@@ -1,5 +1,6 @@
 export default {
-  defaultVacationDays: 7,
-  rolloverVacationLimit: 5
+  defaultVacationDays: 15,
+  rolloverVacationLimit: 5,
+  summerFridayDays: 7.5
 
 }

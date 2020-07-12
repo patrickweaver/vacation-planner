@@ -1,6 +1,6 @@
 {
   "name": "wintercal",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Plan your vacation days this Winter",
   "main": "server.js",
   "scripts": {

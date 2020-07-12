@@ -1,10 +1,10 @@
 var dates = {
-  startDate:                '2019-11-10',
-  endDate:                  '2020-01-11',
+  startDate:                '2020-05-13',
+  endDate:                  '2020-09-09',
   rolloverPeriodStart:      '2020-01-01',
   rolloverPeriodEnd:        '2020-03-31',
-  summerFridayPeriodStart:  '2019-05-24',
-  summerFridayPeriodEnd:    '2019-08-30'
+  summerFridayPeriodStart:  '2020-05-22',
+  summerFridayPeriodEnd:    '2020-09-05'
 }
 
 for (var i in dates) {

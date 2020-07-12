@@ -1,4 +1,4 @@
-const cookieName = 'winterCalState'
+const cookieName = 'summer2020CalState'
 
 import React from 'react'
 
@@ -50,10 +50,14 @@ export default class Cal extends React.Component {
     return this.state.vacationLeft - (this.state.vacation + this.state.rolloverVacation)
   }
   
+  summerFridayDaysRemaining() {
+    return importantNumbers.summerFridayDays - this.state.summerFriday;
+  }
+  
   changeDayStatus(event, weekNumber, dayNumber, specialDateProperties, clickType) {
     event.preventDefault()
     const currentStatus = this.state.weekStatuses[weekNumber][dayNumber];
-    var newStatus = nextStatus(currentStatus, weekNumber, dayNumber, specialDateProperties, clickType, this.vacationDaysRemaining(), this.state.rolloverVacation);
+    var newStatus = nextStatus(currentStatus, weekNumber, dayNumber, specialDateProperties, clickType, this.vacationDaysRemaining(), this.state.rolloverVacation, this.summerFridayDaysRemaining());
     
     this.setState((prevState, props) => {
       var newStatuses = prevState.weekStatuses
@@ -82,8 +86,10 @@ export default class Cal extends React.Component {
             break;
           case statuses.summerFriday:
             summerFriday += 1;
+            break;
           case statuses.summerFridayHalf:
-            summerFriday += .5;    
+            summerFriday += .5;
+            break;
           case statuses.other:
             other += 1;
             break;
@@ -99,6 +105,10 @@ export default class Cal extends React.Component {
             break;
           case statuses.nextYearVacationHalf:
             nextYearVacation += .5;
+            break;
+          case statuses.summerFridayHalfVacationHalf:
+            summerFriday += .5;
+            vacation += .5;
             break;
           }
         })
@@ -143,25 +153,28 @@ export default class Cal extends React.Component {
 
     return (
       <div>
-        <h1 id="app-title">❄️ Winter Vacation Planner ❄️</h1>
+        <h1 id="app-title">☀️ Summer Planner ☀️</h1>
 
         <ul id="tally">
           <li>
-            <strong>2019 Vac. Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
+            <strong>2020 Vac. Days Left To Use: </strong><input className="days-input" onChange={this.saveVacation} value={this.state.vacationLeft}></input>
           </li>
           <hr/>
           <li>
-            2019 Vac. Days Scheduled (including Rollover): {this.state.vacation + this.state.rolloverVacation}
+            2020 Sum Fri Days Remaining: {importantNumbers.summerFridayDays - this.state.summerFriday}
           </li>
           <li>
-            2019 Vac. Days Remaining: {this.vacationDaysRemaining()}
+            2020 Vac. Days Scheduled {/*<!--(including Rollover)-->*/}: {this.state.vacation + this.state.rolloverVacation}
           </li>
           <li>
+            2020 Vac. Days Remaining: {this.vacationDaysRemaining()}
+          </li>
+          {/*<!--<li>
             Rollover Vac. Days Scheduled: {this.state.rolloverVacation}
           </li>
           <li>
             2020 Vac. Days Scheduled: {this.state.nextYearVacation}
-          </li>
+          </li>-->*/}
           <li>
             Misc Days Off: {this.state.other} (Right Click)
           </li>
