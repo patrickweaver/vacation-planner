@@ -20,7 +20,7 @@
     "webpack-cli": "^3.3.5",
     "@babel/core": "^7.6.0",
     "jest": "^25.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "csvtojson": "^2.0.9"
   },
   "engines": {
